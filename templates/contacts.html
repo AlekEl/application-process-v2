@@ -2,8 +2,8 @@
 
 {% block content %}
     <div id="mentors">
-        {% for item in hat_girl %}
-            {{ item.full_name }} {{ item.phone_number }}<br/>
+        {% for item in contacts_data %}
+            {{ item.name + " " + item.first_name + " " + item.last_name }}<br/>
         {% endfor%}
     </div>
 

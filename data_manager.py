@@ -31,20 +31,23 @@ def get_mentors_by_country(cursor):
                     SELECT schools.country, COUNT(mentors) AS Mentors
                     FROM schools
                     INNER JOIN mentors ON schools.city = mentors.city
-                    GROUP BY schools.country;
+                    GROUP BY schools.country
+                    ORDER BY schools.country;
                    """)
     mentors_by_country = cursor.fetchall()
     return mentors_by_country
 
 
 @database_common.connection_handler
-def get_hat_girl(cursor):
+def get_contacts(cursor):
     cursor.execute("""
-                    SELECT CONCAT(first_name, ' ', last_name) AS full_name, phone_number  FROM applicants
-                    WHERE email LIKE '%@adipiscingenimmi.edu'
+                    SELECT schools.name, mentors.first_name, mentors.last_name
+                    FROM schools
+                    INNER JOIN mentors ON mentors.id = schools.contact_person
+                    ORDER BY schools.name                    
                    """)
-    carol_data = cursor.fetchall()
-    return carol_data
+    contacts_data = cursor.fetchall()
+    return contacts_data
 
 
 @database_common.connection_handler

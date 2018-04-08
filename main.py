@@ -32,11 +32,11 @@ def mentors_by_country():
     return render_template('mentors_by_country.html', mentors_by_country_data=mentors_by_country_data)
 
 
-@app.route('/find-hat-girl')
-def find_hat_girl():
-    hat_girl = data_manager.get_hat_girl()
+@app.route('/contacts')
+def contacts():
+    contacts_data = data_manager.get_contacts()
 
-    return render_template('find_hat_girl.html', hat_girl=hat_girl)
+    return render_template('contacts.html', contacts_data=contacts_data)
 
 
 @app.route('/add-and-find-marcus')
