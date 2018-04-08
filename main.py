@@ -10,19 +10,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/mentors-with-best-first-name')
-def mentor_names():
+@app.route('/mentors')
+def mentors_and_schools():
     # We get back dictionaries here (for details check 'database_common.py')
-    mentor_names = data_manager.get_mentor_names()
+    mentors_and_school = data_manager.get_mentors_and_school()
 
-    return render_template('mentor_names.html', mentor_names=mentor_names)
+    return render_template('mentors_and_school.html', mentors_and_school=mentors_and_school)
 
 
-@app.route('/mentor-nick-names')
-def mentor_nick_names():
-    mentor_nick_names = data_manager.get_mentor_nick_names()
+@app.route('/all-school')
+def mentors_all_school():
+    mentors_all_schools = data_manager.get_mentors_all_schools()
 
-    return render_template('mentor_nick_names.html', mentor_nick_names=mentor_nick_names)
+    return render_template('mentors_all_school.html', mentors_all_schools=mentors_all_schools)
 
 
 @app.route('/find-carol')

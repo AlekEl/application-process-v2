@@ -2,23 +2,27 @@ import database_common
 
 
 @database_common.connection_handler
-def get_mentor_names(cursor):
+def get_mentors_and_school(cursor):
     cursor.execute("""
-                    SELECT first_name, last_name FROM mentors
-                    ORDER BY last_name;
+                    SELECT mentors.first_name, mentors.last_name, schools.name, schools.country 
+                    FROM mentors
+                    INNER JOIN schools ON mentors.city = schools.city
+                    ORDER BY mentors.id;
                    """)
-    names = cursor.fetchall()
-    return names
+    mentors_and_school = cursor.fetchall()
+    return mentors_and_school
 
 
 @database_common.connection_handler
-def get_mentor_nick_names(cursor):
+def get_mentors_all_schools(cursor):
     cursor.execute("""
-                    SELECT nick_name FROM mentors
-                    ORDER BY nick_name;
+                    SELECT mentors.first_name, mentors.last_name, schools.name, schools.country 
+                    FROM mentors
+                    RIGHT JOIN schools ON mentors.city = schools.city
+                    ORDER BY mentors.id;
                    """)
-    nicknames = cursor.fetchall()
-    return nicknames
+    mentors_all_schools = cursor.fetchall()
+    return mentors_all_schools
 
 
 @database_common.connection_handler

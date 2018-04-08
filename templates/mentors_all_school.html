@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="mentors">
+        {% for item in mentors_all_schools %}
+            {% if item.first_name == None or item.last_name == None %}
+                {{ "No data No Data " + item.name + " " + item.country }}<br/>
+            {% else %}
+                {{ item.first_name + " " + item.last_name + " " + item.name + " " + item.country }}<br/>
+            {% endif %}
+        {% endfor%}
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}

@@ -2,8 +2,8 @@
 
 {% block content %}
     <div id="mentors">
-        {% for mentor_name in mentor_names %}
-            {{ mentor_name.first_name + " " + mentor_name.last_name }}<br/>
+        {% for row in mentors_and_school %}
+            {{ row.first_name + " " + row.last_name + " " + row.name + " " + row.country }}<br/>
         {% endfor%}
     </div>
 

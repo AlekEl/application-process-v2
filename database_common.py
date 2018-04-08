@@ -10,7 +10,7 @@ def get_connection_string():
     user_name = "a11"
     password = "indygoChildren"
     host = "localhost"
-    database_name = "a11"
+    database_name = "application_process"
 
     env_variables_defined = user_name and password and host and database_name
 
