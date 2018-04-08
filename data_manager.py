@@ -26,13 +26,15 @@ def get_mentors_all_schools(cursor):
 
 
 @database_common.connection_handler
-def get_carol(cursor):
+def get_mentors_by_country(cursor):
     cursor.execute("""
-                    SELECT CONCAT(first_name, ' ', last_name) AS full_name, phone_number  FROM applicants
-                    WHERE first_name = 'Carol'
+                    SELECT schools.country, COUNT(mentors) AS Mentors
+                    FROM schools
+                    INNER JOIN mentors ON schools.city = mentors.city
+                    GROUP BY schools.country;
                    """)
-    carol_data = cursor.fetchall()
-    return carol_data
+    mentors_by_country = cursor.fetchall()
+    return mentors_by_country
 
 
 @database_common.connection_handler

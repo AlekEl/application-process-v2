@@ -25,11 +25,11 @@ def mentors_all_school():
     return render_template('mentors_all_school.html', mentors_all_schools=mentors_all_schools)
 
 
-@app.route('/find-carol')
-def find_carol():
-    carol_data = data_manager.get_carol()
+@app.route('/mentors-by-country')
+def mentors_by_country():
+    mentors_by_country_data = data_manager.get_mentors_by_country()
 
-    return render_template('find_carol.html', carol_data=carol_data)
+    return render_template('mentors_by_country.html', mentors_by_country_data=mentors_by_country_data)
 
 
 @app.route('/find-hat-girl')

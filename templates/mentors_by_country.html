@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="mentors">
+        {% for item in mentors_by_country_data %}
+            {% set mentor_count = item.mentors|string %}
+            {{ item.country + " " + mentor_count }}<br/>
+        {% endfor%}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}
