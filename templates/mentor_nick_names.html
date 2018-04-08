@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="mentors">
+        {% for mentor_nick_name in mentor_nick_names %}
+            {{ mentor_nick_name.nick_name }}<br/>
+        {% endfor%}
+    </div>
+
+    {% include 'footer.html' %}
+{% endblock %}
