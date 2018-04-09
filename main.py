@@ -39,12 +39,11 @@ def contacts():
     return render_template('contacts.html', contacts_data=contacts_data)
 
 
-@app.route('/add-and-find-marcus')
-def add_and_find_marcus():
-    data_manager.add_marcus()
-    marcus = data_manager.get_marcus()
+@app.route('/applicants')
+def applicants():
+    applicants_data = data_manager.get_applicants()
 
-    return render_template('find_marcus.html', marcus=marcus)
+    return render_template('applicants.html', applicants_data=applicants_data)
 
 
 @app.route('/update-and-find-jemima')

@@ -51,15 +51,16 @@ def get_contacts(cursor):
 
 
 @database_common.connection_handler
-def add_marcus(cursor):
+def get_applicants(cursor):
     cursor.execute("""
-                    INSERT INTO applicants
-                      (first_name, last_name, phone_number, email, application_code)
-                    SELECT 'Marcus', 'Schaffarzyk', '003620/725-2666', 'djnovus@groovecoverage.com', 54823
-                    WHERE NOT EXISTS (
-                        SELECT application_code FROM applicants WHERE application_code = 54823
-                                     );
+                    SELECT applicants.first_name, applicants.application_code, applicants_mentors.creation_date
+                    FROM applicants
+                    INNER JOIN applicants_mentors ON applicants.id = applicants_mentors.applicant_id
+                    WHERE applicants_mentors.creation_date > '2016-01-01'
+                    ORDER BY applicants_mentors.creation_date DESC;
                    """)
+    applicants_data = cursor.fetchall()
+    return applicants_data
 
 
 @database_common.connection_handler
