@@ -64,44 +64,12 @@ def get_applicants(cursor):
 
 
 @database_common.connection_handler
-def get_marcus(cursor):
+def get_applicants_and_mentors(cursor):
     cursor.execute("""
-                    SELECT 
-                      first_name, 
-                      last_name, 
-                      phone_number, 
-                      email, 
-                      application_code  
+                    SELECT applicants.first_name AS applicant, applicants.application_code, mentors.first_name, mentors.last_name  
                     FROM applicants
-                    WHERE application_code = 54823
+                    LEFT JOIN applicants_mentors ON applicants.id = applicants_mentors.applicant_id
+                    LEFT JOIN mentors ON mentors.id = applicants_mentors.mentor_id
                    """)
-    marcus = cursor.fetchall()
-    return marcus
-
-
-@database_common.connection_handler
-def update_jemima(cursor):
-    cursor.execute("""
-                    UPDATE applicants
-                    SET phone_number = '003670/223-7459'
-                    WHERE first_name = 'Jemima' AND last_name = 'Foreman'
-                   """)
-
-
-@database_common.connection_handler
-def get_jemima_number(cursor):
-    cursor.execute("""
-                    SELECT phone_number
-                    FROM applicants
-                    WHERE first_name = 'Jemima' AND last_name = 'Foreman'
-                   """)
-    jemima = cursor.fetchall()
-    return jemima
-
-
-@database_common.connection_handler
-def delete_mauriseu(cursor):
-    cursor.execute("""
-                    DELETE FROM applicants
-                    WHERE email LIKE '%@mauriseu.net'
-                   """)
+    applicants_and_mentors = cursor.fetchall()
+    return applicants_and_mentors

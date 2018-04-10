@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div id="mentors">
+        {% for item in applicants_and_mentors_data %}
+            {% set application_code = item.application_code|string %}
+            {% if item.first_name == None or item.last_name == None %}
+                {{ item.applicant + " " + application_code + " No data No data" }}<br/>
+            {% else %}
+                {{ item.applicant + " " + application_code + " " + item.first_name + " " + item.last_name }}<br/>
+            {% endif %}
+        {% endfor%}
+
+    {% include 'footer.html' %}
+{% endblock %}

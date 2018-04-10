@@ -46,19 +46,11 @@ def applicants():
     return render_template('applicants.html', applicants_data=applicants_data)
 
 
-@app.route('/update-and-find-jemima')
-def update_and_find_jemima():
-    data_manager.update_jemima()
-    jemima = data_manager.get_jemima_number()
+@app.route('/applicants-and-mentors')
+def applicants_and_mentors():
+    applicants_and_mentors_data = data_manager.get_applicants_and_mentors()
 
-    return render_template('find_jemima_number.html', jemima=jemima)
-
-
-@app.route('/delete-mauriseu.net')
-def delete_mauriseu():
-    data_manager.delete_mauriseu()
-
-    return redirect('/')
+    return render_template('applicants_and_mentors.html', applicants_and_mentors_data=applicants_and_mentors_data)
 
 
 if __name__ == '__main__':
