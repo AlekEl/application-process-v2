@@ -2,13 +2,26 @@
 
 {% block content %}
     <div id="mentors">
-        {% for item in mentors_all_schools %}
-            {% if item.first_name == None or item.last_name == None %}
-                {{ "No data No Data " + item.name + " " + item.country }}<br/>
-            {% else %}
-                {{ item.first_name + " " + item.last_name + " " + item.name + " " + item.country }}<br/>
-            {% endif %}
-        {% endfor%}
+        <table border="1">
+            <tr><th>First Name</th><th>Last Name</th><th>School Name</th><th>Country</th></tr>
+            {% for item in mentors_all_schools %}
+                {% if item.first_name == None or item.last_name == None %}
+                    <tr>
+                        <td>No data</td>
+                        <td>No data</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.country }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ item.first_name }}</td>
+                        <td>{{ item.last_name }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.country }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor%}
+        </table>
     </div>
     {% include 'footer.html' %}
 {% endblock %}
