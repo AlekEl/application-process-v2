@@ -2,10 +2,16 @@
 
 {% block content %}
     <div id="mentors">
-        {% for item in mentors_by_country_data %}
-            {% set mentor_count = item.mentors|string %}
-            {{ item.country + " " + mentor_count }}<br/>
-        {% endfor%}
+        <table border="1">
+            <tr><th>Country</th><th>Mentor Count</th></tr>
+            {% for item in mentors_by_country_data %}
+                {% set mentor_count = item.mentors|string %}
+                <tr>
+                    <td>{{ item.country }}</td>
+                    <td>{{ mentor_count }}</td>
+                </tr>
+            {% endfor%}
+        </table>
     </div>
 
     {% include 'footer.html' %}
