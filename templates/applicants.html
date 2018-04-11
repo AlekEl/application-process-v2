@@ -2,11 +2,18 @@
 
 {% block content %}
     <div id="mentors">
+        <table border="1">
+        <tr><th>First Name</th><th>Application Code</th><th>Creation Date</th></tr>
         {% for item in applicants_data %}
             {% set application_code = item.application_code|string %}
             {% set creation_date = item.creation_date|string %}
-            {{ item.first_name + " " + application_code + " " + creation_date }}<br/>
-        {% endfor%}
+            <tr>
+                <td>{{ item.first_name }}</td>
+                <td>{{ application_code }}</td>
+                <td>{{ creation_date }}</td>
+            </tr>
+        {% endfor %}
+        </table>
     </div>
 
     {% include 'footer.html' %}
