@@ -2,9 +2,17 @@
 
 {% block content %}
     <div id="mentors">
-        {% for row in mentors_and_school %}
-            {{ row.first_name + " " + row.last_name + " " + row.name + " " + row.country }}<br/>
-        {% endfor%}
+        <table border="1">
+            <tr><th>First Name</th><th>Last Name</th><th>School Name</th><th>Country</th></tr>
+            {% for item in mentors_and_school %}
+                <tr>
+                    <td>{{ item.first_name }}</td>
+                    <td>{{ item.last_name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.country }}</td>
+                </tr>
+            {% endfor%}
+        </table>
     </div>
 
     {% include 'footer.html' %}
