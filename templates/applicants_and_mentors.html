@@ -2,12 +2,24 @@
 
 {% block content %}
     <div id="mentors">
+        <table border="1">
+            <tr><th>Applicant's name</th><th>Application Code</th><th>Mentor's Name</th><th>Mentor's Last Name</th></tr>
         {% for item in applicants_and_mentors_data %}
             {% set application_code = item.application_code|string %}
             {% if item.first_name == None or item.last_name == None %}
-                {{ item.applicant + " " + application_code + " No data No data" }}<br/>
+                <tr>
+                    <td>{{ item.applicant }}</td>
+                    <td>{{ application_code }}</td>
+                    <td>No Data</td>
+                    <td>No Data</td>
+                </tr>
             {% else %}
-                {{ item.applicant + " " + application_code + " " + item.first_name + " " + item.last_name }}<br/>
+                <tr>
+                    <td>{{ item.applicant }}</td>
+                    <td>{{ application_code }}</td>
+                    <td>{{ item.first_name }}</td>
+                    <td>{{ item.last_name }}</td>
+                </tr>
             {% endif %}
         {% endfor%}
 
